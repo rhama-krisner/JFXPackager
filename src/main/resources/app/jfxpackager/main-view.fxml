@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.jfxpackager.MainController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <ScrollPane prefHeight="533.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+               <content>
+                  <AnchorPane prefHeight="537.0" prefWidth="530.0">
+                     <children>
+                        <GridPane layoutX="2.0" layoutY="2.0" prefHeight="333.0" prefWidth="529.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="193.0" minWidth="3.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.0" minWidth="10.0" prefWidth="377.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="27.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Icon" GridPane.rowIndex="1" />
+                              <TextField promptText="Icon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button fx:id="btnEscolherImagem" mnemonicParsing="false" onMouseClicked="#btnEscolherImagemOnClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtImagemPath" promptText="Icon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="App Name" />
+                              <TextField fx:id="txtAppName" promptText="App Name" GridPane.columnIndex="1" />
+                              <Label text="App Directory" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtAppDirectory" promptText="Path to app" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Button fx:id="btnAppDirectory" mnemonicParsing="false" onMouseClicked="#btnEscolherDirectoryOnClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label text="Main Class" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtMainClass" promptText="Main Class" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label text="App Version" GridPane.rowIndex="6" />
+                              <Label text="Vendor" GridPane.rowIndex="7" />
+                              <Label text="Destination" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtAppVersion" promptText="App Version" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtVendor" promptText="Vendor" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtDestination" promptText="Path destination" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Button fx:id="btnDestination" mnemonicParsing="false" onMouseClicked="#btnDestinationOnClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Button fx:id="btnMainClass" mnemonicParsing="false" onMouseClicked="#btnMainClassOnClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label text="Jar" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtJar" promptText="Jar to package" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button fx:id="btnJarPath" mnemonicParsing="false" onMouseClicked="#btnJarPathOnClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label text="Type" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="packageType" prefWidth="150.0" promptText="Package Type" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                           </children>
+                        </GridPane>
+                        <Button fx:id="btnPackage" layoutX="200.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#btnPackageOnClick" prefHeight="25.0" prefWidth="130.0" text="Package" />
+                        <CheckBox fx:id="cbShortcut" layoutX="20.0" layoutY="379.0" mnemonicParsing="false" text="Create Shortcut" />
+                        <Label fx:id="lblPacking" layoutX="222.0" layoutY="404.0" prefHeight="27.0" prefWidth="101.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
