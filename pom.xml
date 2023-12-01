@@ -44,11 +44,11 @@
             <version>1.3.0</version>
         </dependency>
         <!--######################################-->
-        <!--JFoenix-->
+        <!--MaterialFX-->
         <dependency>
-            <groupId>com.jfoenix</groupId>
-            <artifactId>jfoenix</artifactId>
-            <version>9.0.10</version>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.13.5</version>
         </dependency>
         <!--######################################-->
         <!--Spring Boot-->

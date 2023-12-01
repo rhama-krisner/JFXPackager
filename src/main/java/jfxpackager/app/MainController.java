@@ -1,5 +1,6 @@
 package jfxpackager.app;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +14,8 @@ public class MainController {
     @FXML
     private Label label_teste;
     @FXML
-    private Button button_setLabelText;
+    private MFXButton button_setLabelText;
+
     @FXML
     private Button button_clearLabelText;
 
