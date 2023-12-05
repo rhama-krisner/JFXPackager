@@ -3,6 +3,7 @@ package jfxpackager.app;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import jfxpackager.app.util.Theme;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -27,6 +28,9 @@ public class MainJFXPackagerApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.context.publishEvent(new StageReadyEvent(stage));
+        Theme theme = new Theme();
+        theme.LightTheme(stage);
+        //theme.DarkTheme(stage);
     }
 
     @Override
