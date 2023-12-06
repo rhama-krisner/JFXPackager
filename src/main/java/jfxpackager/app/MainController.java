@@ -78,29 +78,30 @@ public class MainController {
 
         File selectedFile = fileChooser.showOpenDialog(button_FindPathToApp.getScene().getWindow());
 
-        if (selectedFile != null) {
-            String path = selectedFile.getAbsolutePath();
-            System.out.println("Caminho do arquivo selecionado: " + path);
-        }
-
         textField_PathToJar.setText(selectedFile.getPath());
+    }
+
+    private void textFindMainClass(){
+        FileChooser fileChooser = FileChooserFilter.javaClassFileChooser();
+        File initialDirectory = new File(textField_PathToApp.getText() + "/src/main/java");
+        fileChooser.setInitialDirectory(initialDirectory);
+
+        File selectedFile = fileChooser.showOpenDialog(button_FindMainClass.getScene().getWindow());
+
+        textField_MainClass.setText(selectedFile.getPath());
     }
 
 
 
     @FXML
     private void initialize() {
-        button_FindIcon.setOnAction(view -> {
-            textFieldIcon();
-        });
+        button_FindIcon.setOnAction(view -> textFieldIcon());
 
-        button_FindPathToApp.setOnAction(view -> {
-            textFindPathToApp();
-        });
+        button_FindPathToApp.setOnAction(view -> textFindPathToApp());
 
-        button_FindPathToJar.setOnAction(view -> {
-            textFindPathToJar();
-        });
+        button_FindPathToJar.setOnAction(view -> textFindPathToJar());
+
+        button_FindMainClass.setOnAction(view -> textFindMainClass());
 
         print();
     }
@@ -112,6 +113,7 @@ public class MainController {
             sb.append("Local do icone: ").append(textField_Icon.toString()).append("\n");
             sb.append("Diretório do app: ").append(textField_AppName.toString()).append("\n");
             sb.append("Diretório Jar: ").append(textField_PathToJar.toString()).append("\n");
+            sb.append("Diretório classe Main.java: ").append(textField_MainClass.toString()).append("\n");
             System.out.println(sb);
         });
     }

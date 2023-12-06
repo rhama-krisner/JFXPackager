@@ -26,7 +26,7 @@ public class FileChooserFilter {
         return fileChooser;
     }
 
-    public static FileChooser javaFileChooser(){
+    public static FileChooser javaClassFileChooser(){
         String classe = "Java class file (*.java)";
         FileChooser fileChooser = new FileChooser();
 
