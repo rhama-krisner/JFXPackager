@@ -13,11 +13,15 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Controller
 @FxmlView("MainController.fxml")
 public class MainController {
-    private String pathToApp;
     //TextField
     @FXML
     private TextField textField_AppName;
@@ -49,31 +53,39 @@ public class MainController {
     private ComboBox<String> comboBox_PackageType;
 
     private String textFieldAppName() {
-        if (textField_AppName.getText().trim().equals("")) {
+        if (textField_AppName.getText().trim().isEmpty()) {
             return null;
         }
 
         return textField_AppName.getText();
     }
 
-    private String textFieldIcon() {
-        if (textField_Icon.getText().trim().equals("")) {
-            return null;
-        } else {
-            FileChooser fileChooser = FileChooserFilter.imageFileChooser();
-            File file = fileChooser.showOpenDialog(null);
-            textField_Icon.setText(file.getPath());
-
-            return file.getPath();
-        }
+    private void textFieldIcon() {
+        FileChooser fileChooser = FileChooserFilter.imageFileChooser();
+        File file = fileChooser.showOpenDialog(button_FindIcon.getScene().getWindow());
+        textField_Icon.setText(file.getPath());
     }
-
     private void textFindPathToApp() {
-        Stage stage = new Stage();
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        File file = directoryChooser.showDialog(stage);
+        File file = directoryChooser.showDialog(button_FindPathToApp.getScene().getWindow());
         textField_PathToApp.setText(file.getPath());
     }
+
+    private void textFindPathToJar() {
+        FileChooser fileChooser = FileChooserFilter.jarFileChooser();
+        File initialDirectory = new File(textField_PathToApp.getText() + "/out/artifacts");
+        fileChooser.setInitialDirectory(initialDirectory);
+
+        File selectedFile = fileChooser.showOpenDialog(button_FindPathToApp.getScene().getWindow());
+
+        if (selectedFile != null) {
+            String path = selectedFile.getAbsolutePath();
+            System.out.println("Caminho do arquivo selecionado: " + path);
+        }
+
+        textField_PathToJar.setText(selectedFile.getPath());
+    }
+
 
 
     @FXML
@@ -86,6 +98,10 @@ public class MainController {
             textFindPathToApp();
         });
 
+        button_FindPathToJar.setOnAction(view -> {
+            textFindPathToJar();
+        });
+
         print();
     }
 
@@ -93,9 +109,9 @@ public class MainController {
         button_Package.setOnAction(view -> {
             StringBuilder sb = new StringBuilder();
             sb.append("Nome do app: ").append(textFieldAppName()).append("\n");
-            sb.append("Local do icone: ").append(textFieldIcon()).append("\n");
-            sb.append("Diretório do app: ").append(textField_PathToApp).append("\n");
-
+            sb.append("Local do icone: ").append(textField_Icon.toString()).append("\n");
+            sb.append("Diretório do app: ").append(textField_AppName.toString()).append("\n");
+            sb.append("Diretório Jar: ").append(textField_PathToJar.toString()).append("\n");
             System.out.println(sb);
         });
     }
