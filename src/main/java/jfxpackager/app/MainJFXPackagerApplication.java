@@ -29,8 +29,8 @@ public class MainJFXPackagerApplication extends Application {
     public void start(Stage stage) throws Exception {
         this.context.publishEvent(new StageReadyEvent(stage));
         Theme theme = new Theme();
-        theme.LightTheme(stage);
-        //theme.DarkTheme(stage);
+        //theme.LightTheme(stage);
+        theme.DarkTheme(stage);
     }
 
     @Override
