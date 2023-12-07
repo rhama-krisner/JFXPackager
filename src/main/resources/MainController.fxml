@@ -18,11 +18,11 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import org.kordamp.ikonli.javafx.StackedFontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpackager.app.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpackager.app.MainController">
     <children>
         <BorderPane layoutX="200.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-                <AnchorPane prefHeight="547.0" prefWidth="399.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="664.0" prefWidth="399.0" BorderPane.alignment="CENTER">
                     <children>
                         <GridPane layoutX="20.0" layoutY="562.0" prefHeight="605.0" prefWidth="359.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                             <columnConstraints>
@@ -156,11 +156,16 @@
                               </GridPane>
                             </children>
                         </GridPane>
-                        <StackedFontIcon layoutX="365.0" layoutY="-1.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                            <children>
-                                <FontIcon iconLiteral="bi-gear-fill" iconSize="20" />
-                            </children>
+                        <StackedFontIcon layoutX="312.0" layoutY="14.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="14.0">
+                     <children>
+                        <ToggleSwitch fx:id="toggleSwitch_theme" prefHeight="17.0" prefWidth="33.0" style="-color-accent-emphasis: #08B865;" styleClass="toggle-switch" />
+                     </children>
                         </StackedFontIcon>
+                  <StackedFontIcon layoutX="349.0" layoutY="14.0" prefHeight="30.0" prefWidth="30.0">
+                     <children>
+                        <FontIcon fx:id="fontIcon_theme" iconLiteral="bi-moon-fill" iconSize="19" />
+                     </children>
+                  </StackedFontIcon>
                     </children>
                 </AnchorPane>
             </center>

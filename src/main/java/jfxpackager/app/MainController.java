@@ -8,7 +8,9 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxpackager.app.util.FileChooserFilter;
+import jfxpackager.app.util.Theme;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
@@ -61,9 +63,15 @@ public class MainController {
     private ToggleSwitch toggleSwitch_createShortcut;
     @FXML
     private ToggleSwitch toggleSwitch_addDescription;
+    @FXML
+    private ToggleSwitch toggleSwitch_theme;
     //Text Area
     @FXML
     private TextArea textArea_description;
+    //Icon
+    @FXML
+    private FontIcon fontIcon_theme;
+    private Stage stage;
 
     private String textFieldAppName() {
         if (textField_AppName.getText().trim().isEmpty()) {
@@ -153,9 +161,32 @@ public class MainController {
         comboBox_PackageType.getSelectionModel().getSelectedIndex();
     }
 
+    private void themeConfig() throws Exception {
+        Stage stage = new Stage();
+        Theme theme = new Theme();
+
+        toggleSwitch_theme.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            try {
+                if (t1){
+                    theme.DarkTheme(stage);
+                    fontIcon_theme.setIconLiteral("bi-sun-fill");
+                } else {
+                    theme.LightTheme(stage);
+                    fontIcon_theme.setIconLiteral("bi-moon-fill");
+                    
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+
 
     @FXML
-    private void initialize() {
+    private void initialize() throws Exception {
+        themeConfig();
+
         button_FindIcon.setOnAction(view -> textFieldIcon());
 
         button_FindPathToApp.setOnAction(view -> textFindPathToApp());
