@@ -3,6 +3,7 @@ package jfxpackager.app;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -13,11 +14,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 @Controller
 @FxmlView("MainController.fxml")
@@ -35,6 +31,11 @@ public class MainController {
     private TextField textField_MainClass;
     @FXML
     private TextField textField_Destination;
+    @FXML
+    private TextField textField_appVersion;
+    @FXML
+    private TextField textField_vendor;
+
     //Buttons
     @FXML
     private Button button_FindIcon;
@@ -48,6 +49,11 @@ public class MainController {
     private Button button_FindDestination;
     @FXML
     private Button button_Package;
+    //Check Box
+    @FXML
+    private CheckBox checkBox_appVersion;
+    @FXML
+    private CheckBox checkBox_Vendor;
 
     @FXML
     private ComboBox<String> comboBox_PackageType;
@@ -65,6 +71,7 @@ public class MainController {
         File file = fileChooser.showOpenDialog(button_FindIcon.getScene().getWindow());
         textField_Icon.setText(file.getPath());
     }
+
     private void textFindPathToApp() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File file = directoryChooser.showDialog(button_FindPathToApp.getScene().getWindow());
@@ -81,7 +88,7 @@ public class MainController {
         textField_PathToJar.setText(selectedFile.getPath());
     }
 
-    private void textFindMainClass(){
+    private void textFindMainClass() {
         FileChooser fileChooser = FileChooserFilter.javaClassFileChooser();
         File initialDirectory = new File(textField_PathToApp.getText() + "/src/main/java");
         fileChooser.setInitialDirectory(initialDirectory);
@@ -91,6 +98,37 @@ public class MainController {
         textField_MainClass.setText(selectedFile.getPath());
     }
 
+    private void textFieldDestination() {
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(stage);
+        textField_Destination.setText(selectedDirectory.toString());
+    }
+
+    private String textFieldAppVersion() {
+        checkBox_appVersion.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
+            System.out.println("Ouvinte foi chamado");
+            textField_appVersion.setDisable(!isNowSelected);
+        });
+
+        return "--version " + textField_appVersion.getText();
+    }
+
+    private String textFieldVendor() {
+        checkBox_Vendor.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
+            System.out.println("Ouvinte foi chamado");
+            textField_vendor.setDisable(!isNowSelected);
+        });
+
+        return "--vendor " + textField_vendor.getText();
+    }
+
+    private void comboBoxPackageType() {
+        comboBox_PackageType.getItems().addAll(
+                "app-image", "exe", "msi", "rpm", "deb", "pkg", "dmg");
+
+        comboBox_PackageType.getSelectionModel().getSelectedIndex();
+    }
 
 
     @FXML
@@ -103,6 +141,14 @@ public class MainController {
 
         button_FindMainClass.setOnAction(view -> textFindMainClass());
 
+        textFieldAppVersion();
+
+        textFieldVendor();
+
+        button_FindDestination.setOnAction(view -> textFieldDestination());
+
+        comboBoxPackageType();
+
         print();
     }
 
@@ -110,10 +156,14 @@ public class MainController {
         button_Package.setOnAction(view -> {
             StringBuilder sb = new StringBuilder();
             sb.append("Nome do app: ").append(textFieldAppName()).append("\n");
-            sb.append("Local do icone: ").append(textField_Icon.toString()).append("\n");
-            sb.append("Diretório do app: ").append(textField_AppName.toString()).append("\n");
-            sb.append("Diretório Jar: ").append(textField_PathToJar.toString()).append("\n");
-            sb.append("Diretório classe Main.java: ").append(textField_MainClass.toString()).append("\n");
+            sb.append("Local do icone: ").append(textField_Icon.getText()).append("\n");
+            sb.append("Diretório do app: ").append(textField_AppName.getText()).append("\n");
+            sb.append("Diretório Jar: ").append(textField_PathToJar.getText()).append("\n");
+            sb.append("Diretório classe Main.java: ").append(textField_MainClass.getText()).append("\n");
+            sb.append("Diretório de destino: ").append(textField_Destination.getText()).append("\n");
+            sb.append("Versão: ").append(textField_appVersion.getText()).append("\n");
+            sb.append("Desenvolvedor: ").append(textField_vendor.getText()).append("\n");
+            sb.append("Tipo: ").append(comboBox_PackageType.getValue()).append("\n");
             System.out.println(sb);
         });
     }

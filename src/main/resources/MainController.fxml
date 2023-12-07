@@ -93,18 +93,18 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <TextField prefHeight="35.0" promptText="App Version" GridPane.columnIndex="1">
+                              <CheckBox fx:id="checkBox_appVersion" mnemonicParsing="false" />
+                              <TextField fx:id="textField_appVersion" disable="true" prefHeight="35.0" promptText="App Version" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField prefHeight="35.0" promptText="Vendor" GridPane.columnIndex="3">
+                              <CheckBox fx:id="checkBox_Vendor" mnemonicParsing="false" GridPane.columnIndex="2" />
+                              <TextField fx:id="textField_vendor" disable="true" prefHeight="35.0" promptText="Vendor" GridPane.columnIndex="3">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="2" />
-                              <CheckBox mnemonicParsing="false" />
                            </children>
                         </GridPane>
                               <GridPane prefHeight="301.0" prefWidth="359.0">
