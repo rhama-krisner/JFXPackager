@@ -1,11 +1,9 @@
 package jfxpackager.app;
 
 
+import atlantafx.base.controls.ToggleSwitch;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -18,6 +16,7 @@ import java.io.File;
 @Controller
 @FxmlView("MainController.fxml")
 public class MainController {
+    String createShortcut;
     //TextField
     @FXML
     private TextField textField_AppName;
@@ -54,9 +53,17 @@ public class MainController {
     private CheckBox checkBox_appVersion;
     @FXML
     private CheckBox checkBox_Vendor;
-
+    //Combo Box
     @FXML
     private ComboBox<String> comboBox_PackageType;
+    //Toggle Switch
+    @FXML
+    private ToggleSwitch toggleSwitch_createShortcut;
+    @FXML
+    private ToggleSwitch toggleSwitch_addDescription;
+    //Text Area
+    @FXML
+    private TextArea textArea_description;
 
     private String textFieldAppName() {
         if (textField_AppName.getText().trim().isEmpty()) {
@@ -105,22 +112,38 @@ public class MainController {
         textField_Destination.setText(selectedDirectory.toString());
     }
 
-    private String textFieldAppVersion() {
+    private void textFieldAppVersion() {
         checkBox_appVersion.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
             System.out.println("Ouvinte foi chamado");
             textField_appVersion.setDisable(!isNowSelected);
         });
 
-        return "--version " + textField_appVersion.getText();
+        textField_appVersion.getText();
     }
 
-    private String textFieldVendor() {
+    private void textFieldVendor() {
         checkBox_Vendor.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
             System.out.println("Ouvinte foi chamado");
             textField_vendor.setDisable(!isNowSelected);
         });
 
-        return "--vendor " + textField_vendor.getText();
+        textField_vendor.getText();
+    }
+
+    private void toggleSwitchCreateShortcut(){
+        toggleSwitch_createShortcut.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
+            System.out.println("Create Shorcut habilitado");
+            createShortcut = "-- create-shortcut";
+        });
+    }
+
+    private void textArea_description() {
+        toggleSwitch_addDescription.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
+            System.out.println("Ouvinte foi chamado");
+            textArea_description.setDisable(!isNowSelected);
+        });
+
+        textArea_description.getText();
     }
 
     private void comboBoxPackageType() {
@@ -145,9 +168,13 @@ public class MainController {
 
         textFieldVendor();
 
+        toggleSwitchCreateShortcut();
+
         button_FindDestination.setOnAction(view -> textFieldDestination());
 
         comboBoxPackageType();
+
+        textArea_description();
 
         print();
     }
@@ -164,6 +191,8 @@ public class MainController {
             sb.append("Versão: ").append(textField_appVersion.getText()).append("\n");
             sb.append("Desenvolvedor: ").append(textField_vendor.getText()).append("\n");
             sb.append("Tipo: ").append(comboBox_PackageType.getValue()).append("\n");
+            sb.append("Adicionar Atalho: ").append(createShortcut).append("\n");
+            sb.append("Descrição: ").append(textArea_description.getText()).append("\n");
             System.out.println(sb);
         });
     }
