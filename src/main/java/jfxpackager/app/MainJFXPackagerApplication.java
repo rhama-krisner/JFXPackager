@@ -35,7 +35,7 @@ public class MainJFXPackagerApplication extends Application {
 
     private void applyTheme(Stage stage) {
         try {
-            theme.LightTheme(stage);
+            theme.LightTheme();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

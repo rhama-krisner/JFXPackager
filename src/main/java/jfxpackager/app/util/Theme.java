@@ -2,18 +2,16 @@ package jfxpackager.app.util;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 import static javafx.application.Application.setUserAgentStylesheet;
 
-public class Theme{
+public class Theme {
 
-    public void DarkTheme(Stage stage) throws Exception {
+    public void DarkTheme() {
         setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
     }
 
-    public void LightTheme(Stage stage) throws Exception {
+    public void LightTheme() {
         setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
     }
 }

@@ -163,10 +163,10 @@ public class MainController {
         toggleSwitch_theme.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
             try {
                 if (t1) {
-                    theme.DarkTheme(stage);
+                    theme.DarkTheme();
                     fontIcon_theme.setIconLiteral("bi-sun-fill");
                 } else {
-                    theme.LightTheme(stage);
+                    theme.LightTheme();
                     fontIcon_theme.setIconLiteral("bi-moon-fill");
 
                 }
