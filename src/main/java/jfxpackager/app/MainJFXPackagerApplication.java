@@ -1,9 +1,7 @@
 package jfxpackager.app;
 
-import atlantafx.base.controls.ToggleSwitch;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import jfxpackager.app.util.Theme;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -12,9 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 public class MainJFXPackagerApplication extends Application {
     private ConfigurableApplicationContext context;
-
-    @FXML
-    ToggleSwitch toggleSwitch_theme;
 
 
     private ConfigurableApplicationContext initContext() {
@@ -36,8 +31,6 @@ public class MainJFXPackagerApplication extends Application {
         this.context.publishEvent(new StageReadyEvent(stage));
         Theme theme = new Theme();
         theme.LightTheme(stage);
-
-
     }
 
     @Override

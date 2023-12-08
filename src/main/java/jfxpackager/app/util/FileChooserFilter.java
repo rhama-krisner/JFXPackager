@@ -35,12 +35,4 @@ public class FileChooserFilter {
 
         return fileChooser;
     }
-
-    public static FileChooser anyFileChooser(String path){
-        FileChooser fileChooser = new FileChooser();
-        File dir = new File(path);
-        fileChooser.setInitialDirectory(dir);
-
-        return fileChooser;
-    }
 }

@@ -125,8 +125,6 @@ public class MainController {
             System.out.println("Ouvinte foi chamado");
             textField_appVersion.setDisable(!isNowSelected);
         });
-
-        textField_appVersion.getText();
     }
 
     private void textFieldVendor() {
@@ -134,8 +132,6 @@ public class MainController {
             System.out.println("Ouvinte foi chamado");
             textField_vendor.setDisable(!isNowSelected);
         });
-
-        textField_vendor.getText();
     }
 
     private void toggleSwitchCreateShortcut(){
@@ -161,7 +157,7 @@ public class MainController {
         comboBox_PackageType.getSelectionModel().getSelectedIndex();
     }
 
-    private void themeConfig() throws Exception {
+    private void themeConfig() {
         Stage stage = new Stage();
         Theme theme = new Theme();
 
@@ -173,7 +169,7 @@ public class MainController {
                 } else {
                     theme.LightTheme(stage);
                     fontIcon_theme.setIconLiteral("bi-moon-fill");
-                    
+
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
