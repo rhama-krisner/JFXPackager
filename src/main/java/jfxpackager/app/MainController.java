@@ -2,6 +2,7 @@ package jfxpackager.app;
 
 
 import atlantafx.base.controls.ToggleSwitch;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
@@ -205,20 +206,31 @@ public class MainController {
     }
 
     private void print() {
-        button_Package.setOnAction(view -> {
+        new Thread(() -> button_Package.setOnAction(view -> {
             StringBuilder sb = new StringBuilder();
-            sb.append("Nome do app: ").append(textFieldAppName()).append("\n");
-            sb.append("Local do icone: ").append(textField_Icon.getText()).append("\n");
-            sb.append("Diretório do app: ").append(textField_AppName.getText()).append("\n");
-            sb.append("Diretório Jar: ").append(textField_PathToJar.getText()).append("\n");
-            sb.append("Diretório classe Main.java: ").append(textField_MainClass.getText()).append("\n");
-            sb.append("Diretório de destino: ").append(textField_Destination.getText()).append("\n");
-            sb.append("Versão: ").append(textField_appVersion.getText()).append("\n");
-            sb.append("Desenvolvedor: ").append(textField_vendor.getText()).append("\n");
-            sb.append("Tipo: ").append(comboBox_PackageType.getValue()).append("\n");
-            sb.append("Adicionar Atalho: ").append(createShortcut).append("\n");
-            sb.append("Descrição: ").append(textArea_description.getText()).append("\n");
+            sb.append("jpackage ");
+            //Nome do app
+            sb.append("--name ").append(textFieldAppName()).append("\\").append(" ");
+            //Local do icone
+            sb.append("--icon ").append(textField_Icon.getText()).append(" ");
+            //Diretorio do app
+            sb.append("--input ").append(textField_AppName.getText()).append(" ");
+            //Diretório Jar
+            sb.append("--main-jar").append(textField_PathToJar.getText()).append(" ");
+            //Classe main
+            sb.append("--main-class ").append(textField_MainClass.getText()).append(" ");
+            //Diretorio de destivo
+            sb.append("--dest ").append(textField_Destination.getText()).append(" ");
+            //Versão do app
+            sb.append("--app-version ").append(textField_appVersion.getText()).append(" ");
+            //Desenvolvedor
+            sb.append("--vendor ").append(textField_vendor.getText()).append(" ");
+            //Tpo de empacotamento
+            sb.append("--type ").append(comboBox_PackageType.getValue()).append(" ");
+            sb.append("Adicionar Atalho: ").append(createShortcut).append(" ");
+            //Descrição
+            sb.append("--description ").append(textArea_description.getText()).append(" ");
             System.out.println(sb);
-        });
+        })).start();
     }
 }
