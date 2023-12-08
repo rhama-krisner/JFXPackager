@@ -33,6 +33,7 @@ public class MainJFXPackagerApplication extends Application {
         theme.LightTheme(stage);
     }
 
+
     @Override
     public void stop() {
         this.context.stop();

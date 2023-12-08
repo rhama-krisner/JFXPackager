@@ -2,7 +2,6 @@ package jfxpackager.app;
 
 
 import atlantafx.base.controls.ToggleSwitch;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
@@ -72,7 +71,6 @@ public class MainController {
     //Icon
     @FXML
     private FontIcon fontIcon_theme;
-    private Stage stage;
 
     private String textFieldAppName() {
         if (textField_AppName.getText().trim().isEmpty()) {
@@ -137,7 +135,7 @@ public class MainController {
 
     private void toggleSwitchCreateShortcut() {
         toggleSwitch_createShortcut.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
-            System.out.println("Create Shorcut habilitado");
+            System.out.println("Create Shortcut habilitado");
             createShortcut = "-- create-shortcut";
         });
     }
@@ -180,39 +178,30 @@ public class MainController {
 
 
     @FXML
-    private void initialize() throws Exception {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                themeConfig();
+    private void initialize() {
+        themeConfig();
 
-                button_FindIcon.setOnAction(view -> textFieldIcon());
+        button_FindIcon.setOnAction(view -> textFieldIcon());
 
-                button_FindPathToApp.setOnAction(view -> textFindPathToApp());
+        button_FindPathToApp.setOnAction(view -> textFindPathToApp());
 
-                button_FindPathToJar.setOnAction(view -> textFindPathToJar());
+        button_FindPathToJar.setOnAction(view -> textFindPathToJar());
 
-                button_FindMainClass.setOnAction(view -> textFindMainClass());
+        button_FindMainClass.setOnAction(view -> textFindMainClass());
 
-                textFieldAppVersion();
+        textFieldAppVersion();
 
-                textFieldVendor();
+        textFieldVendor();
 
-                toggleSwitchCreateShortcut();
+        toggleSwitchCreateShortcut();
 
-                button_FindDestination.setOnAction(view -> textFieldDestination());
+        button_FindDestination.setOnAction(view -> textFieldDestination());
 
-                comboBoxPackageType();
+        comboBoxPackageType();
 
-                textArea_description();
+        textArea_description();
 
-                print();
-
-                return null;
-            }
-        };
-
-        new Thread(task).start();
+        print();
     }
 
     private void print() {
