@@ -10,14 +10,16 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 public class MainJFXPackagerApplication extends Application {
     private ConfigurableApplicationContext context;
+    private final Theme theme;
 
+    public MainJFXPackagerApplication() {
+        this.theme = new Theme();
+    }
 
     private ConfigurableApplicationContext initContext() {
         return new SpringApplicationBuilder()
                 .sources(JfxpackageApplication.class)
-                .run(getParameters()
-                        .getRaw()
-                        .toArray(new String[0]));
+                .run(getParameters().getRaw().toArray(new String[0]));
     }
 
     @Override
@@ -25,14 +27,19 @@ public class MainJFXPackagerApplication extends Application {
         context = initContext();
     }
 
-
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         this.context.publishEvent(new StageReadyEvent(stage));
-        Theme theme = new Theme();
-        theme.LightTheme(stage);
+        applyTheme(stage);
     }
 
+    private void applyTheme(Stage stage) {
+        try {
+            theme.LightTheme(stage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void stop() {
