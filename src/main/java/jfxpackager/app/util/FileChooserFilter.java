@@ -17,7 +17,7 @@ public class FileChooserFilter {
                 new File(System.getProperty("user.home"), "Pictures")
         );
 
-        OS_Check.CheckOperationalSystem();
+        OS_Check.CheckOperationalSystemForFileChoose();
 
         return fileChooser;
     }

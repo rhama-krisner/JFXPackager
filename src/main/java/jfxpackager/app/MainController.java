@@ -9,6 +9,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxpackager.app.util.FileChooserFilter;
+import jfxpackager.app.util.ProcessBuilderTool;
 import jfxpackager.app.util.Theme;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -19,7 +20,6 @@ import java.io.File;
 @Controller
 @FxmlView("MainController.fxml")
 public class MainController {
-    String createShortcut;
     //TextField
     @FXML
     private TextField textField_AppName;
@@ -120,35 +120,51 @@ public class MainController {
         textField_Destination.setText(selectedDirectory.toString());
     }
 
-    private void textFieldAppVersion() {
-        checkBox_appVersion.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
-            System.out.println("Ouvinte foi chamado");
-            textField_appVersion.setDisable(!isNowSelected);
-        });
+    private String textFieldAppVersion() {
+        checkBox_appVersion.selectedProperty().addListener((observableValue, aBoolean, t1) -> textField_appVersion.setDisable(!t1));
+
+        if (checkBox_appVersion.isSelected()) {
+            return "--app-version " + textField_appVersion.getText();
+        } else {
+            return "";
+        }
     }
 
-    private void textFieldVendor() {
-        checkBox_Vendor.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
-            System.out.println("Ouvinte foi chamado");
-            textField_vendor.setDisable(!isNowSelected);
-        });
+    private String textFieldVendor() {
+        checkBox_Vendor.selectedProperty().addListener((observableValue, aBoolean, t1) -> textField_vendor.setDisable(!t1));
+        if (checkBox_Vendor.isSelected()) {
+            return "--vendor \"" + textField_vendor.getText() + "\"";
+        } else {
+            return "";
+        }
+
     }
 
-    private void toggleSwitchCreateShortcut() {
-        toggleSwitch_createShortcut.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
-            System.out.println("Create Shortcut habilitado");
-            createShortcut = "-- create-shortcut";
-        });
+    private String toggleSwitchCreateShortcut() {
+        String os = System.getProperty("os.name").toLowerCase();
+        if (toggleSwitch_createShortcut.isSelected()) {
+            if (os.contains("win")) {
+                return "--win-shortcut ";
+            } else if (os.contains("nix") || os.contains("nux")) {
+                return "--linux-shortcut";
+            }
+
+        } else {
+            return "";
+        }
+        ;
+        return os;
     }
 
-    private void textArea_description() {
-        toggleSwitch_addDescription.selectedProperty().addListener((observableValue, wasSelected, isNowSelected) -> {
-            System.out.println("Ouvinte foi chamado");
-            textArea_description.setDisable(!isNowSelected);
-        });
-
-        textArea_description.getText();
+    private String textArea_description() {
+        toggleSwitch_addDescription.selectedProperty().addListener((observableValue, aBoolean, t1) -> textArea_description.setDisable(!t1));
+        if (toggleSwitch_addDescription.isSelected()) {
+            return "--description \"" + textArea_description.getText() + "\"";
+        } else {
+            return "";
+        }
     }
+
 
     private void comboBoxPackageType() {
         comboBox_PackageType.getItems().addAll(
@@ -158,7 +174,6 @@ public class MainController {
     }
 
     private void themeConfig() {
-        Stage stage = new Stage();
         Theme theme = new Theme();
 
         toggleSwitch_theme.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
@@ -176,7 +191,6 @@ public class MainController {
             }
         });
     }
-
 
     @FXML
     private void initialize() {
@@ -203,34 +217,51 @@ public class MainController {
         textArea_description();
 
         print();
+
+        run();
     }
 
-    private void print() {
-        new Thread(() -> button_Package.setOnAction(view -> {
-            StringBuilder sb = new StringBuilder();
-            sb.append("jpackage ");
-            //Nome do app
-            sb.append("--name ").append(textFieldAppName()).append("\\").append(" ");
-            //Local do icone
-            sb.append("--icon ").append(textField_Icon.getText()).append(" ");
-            //Diretorio do app
-            sb.append("--input ").append(textField_AppName.getText()).append(" ");
-            //Diretório Jar
-            sb.append("--main-jar").append(textField_PathToJar.getText()).append(" ");
-            //Classe main
-            sb.append("--main-class ").append(textField_MainClass.getText()).append(" ");
-            //Diretorio de destivo
-            sb.append("--dest ").append(textField_Destination.getText()).append(" ");
-            //Versão do app
-            sb.append("--app-version ").append(textField_appVersion.getText()).append(" ");
-            //Desenvolvedor
-            sb.append("--vendor ").append(textField_vendor.getText()).append(" ");
-            //Tpo de empacotamento
-            sb.append("--type ").append(comboBox_PackageType.getValue()).append(" ");
-            sb.append("Adicionar Atalho: ").append(createShortcut).append(" ");
-            //Descrição
-            sb.append("--description ").append(textArea_description.getText()).append(" ");
-            System.out.println(sb);
-        })).start();
+    private String print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("jpackage ");
+        //Diretorio do app
+        sb.append("--input ").append(textField_PathToApp.getText()).append("\\").append(" ");
+        //Nome do app
+        sb.append("--name ").append(textFieldAppName()).append(" ");
+        //Local do icone
+        sb.append("--icon ").append(textField_Icon.getText()).append(" ");
+        //Diretório Jar
+        sb.append("--main-jar ").append(textField_PathToJar.getText()).append(" ");
+        //Criar Atalho
+        sb.append(toggleSwitchCreateShortcut()).append(" ");
+        //Classe main
+        sb.append("--main-class ").append(textField_MainClass.getText()).append(" ");
+        //Diretorio de destino
+        sb.append("--dest ").append(textField_Destination.getText()).append(" ");
+        //Versão do aplicativo
+        sb.append(textFieldAppVersion()).append(" ");
+        //Desenvolvedor
+        sb.append(textFieldVendor()).append(" ");
+        //Tpo de empacotamento
+        sb.append("--type ").append(comboBox_PackageType.getValue()).append(" ");
+        //Descrição
+        sb.append(textArea_description()).append(" ");
+        System.out.println(sb);
+
+        return sb.toString();
+    }
+
+    private void run() {
+        button_Package.setOnAction(view -> {
+            Task task = new Task() {
+                @Override
+                protected Object call() {
+                    ProcessBuilderTool.RunProcess(print());
+                    return null;
+                }
+            };
+
+            new Thread(task).start();
+        });
     }
 }

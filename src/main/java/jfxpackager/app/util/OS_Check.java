@@ -3,8 +3,8 @@ package jfxpackager.app.util;
 import javafx.stage.FileChooser;
 
 public class OS_Check {
-    public static void CheckOperationalSystem(){
-        String os = System.getProperty("os.name").toLowerCase();
+    static String os = System.getProperty("os.name").toLowerCase();
+    public static void CheckOperationalSystemForFileChoose(){
         FileChooser fileChooser = new FileChooser();
 
         if (os.contains("win")) {
