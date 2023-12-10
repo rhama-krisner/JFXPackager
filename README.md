@@ -1,6 +1,7 @@
 # JFXPackager
 
-![Imagem](https://i.imgur.com/RagXPi7.png)
+![Imagem](https://i.imgur.com/UPBDHJn.png)
+![Imagem](https://i.imgur.com/xIAFNpu.png)
 
 O sistema JPackage com Interface Gráfica, construído com JavaFX, permite que você acesse a funcionalidades básicas e robustas do `jpackage` de uma maneira fácil e intuitiva. Aqui estão as principais funções que você pode realizar com este sistema:
 
@@ -22,8 +23,12 @@ O sistema JPackage com Interface Gráfica, construído com JavaFX, permite que v
 
 9. **Type**: Selecione o tipo de pacote que você deseja criar. As opções incluem os formatos "app-image", "exe", "msi", "rpm", "deb", "pkg", "dmg".
 
-10. **Create Shortcut**: Crie um atalho para o seu aplicativo no Windows. Basta marcar a caixa de seleção correspondente na interface gráfica.
+10. **Create Shortcut**: Crie um atalho para o seu aplicativo no Windows ou em sistemas baseados em Linux. Basta marcar a caixa de seleção correspondente na interface gráfica.
+
+11. **Add Description**: Deixe uma breve descrição sobre o seu aplicativo; 
 
 Além disso, o sistema suporta a criação de pacotes nos formatos que o `jpackage` suporta. Com o JFXPackager, empacotar seu aplicativo Java fica mais fácil e flexível.
 
-Caso goste, não esqueça de deixar uma estrelinha no projeto 😊
+---
+
+_Observação_: O sistema JFXPackage depende da estabilidade do empacotador jpackage para funcionar corretamente.
