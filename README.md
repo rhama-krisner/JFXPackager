@@ -38,9 +38,6 @@ _Observação_: O sistema JFXPackage depende da estabilidade do empacotador jpac
 ---
 # JFXPackager
 
-!Image
-!Image
-
 The JPackage system with a Graphical User Interface, built with JavaFX, allows you to access the basic and robust functionalities of `jpackage` in an easy and intuitive way. Here are the main functions you can perform with this system:
 
 1. **App Directory**: Define the input directory that contains the application files you want to package.
