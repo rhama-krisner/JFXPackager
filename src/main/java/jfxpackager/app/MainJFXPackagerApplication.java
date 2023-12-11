@@ -2,11 +2,14 @@ package jfxpackager.app;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import jfxpackager.app.util.Theme;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Objects;
 
 public class MainJFXPackagerApplication extends Application {
     private ConfigurableApplicationContext context;
@@ -30,6 +33,11 @@ public class MainJFXPackagerApplication extends Application {
     @Override
     public void start(Stage stage) {
         this.context.publishEvent(new StageReadyEvent(stage));
+        String img = "/img/fx.png";
+        stage.getIcons().add(
+                new Image(
+                        Objects.requireNonNull(
+                                MainJFXPackagerApplication.class.getResourceAsStream(img))));
         applyTheme(stage);
     }
 
