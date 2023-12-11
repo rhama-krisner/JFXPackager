@@ -1,190 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import atlantafx.base.controls.ToggleSwitch?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+<?import atlantafx.base.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0"
-            prefWidth="399.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="jfxpackager.app.MainController">
-    <BorderPane layoutX="200.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxpackager.app.MainController">
+    <BorderPane layoutX="200.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <center>
             <AnchorPane prefHeight="664.0" prefWidth="399.0" BorderPane.alignment="CENTER">
-                <GridPane layoutX="20.0" layoutY="562.0" prefHeight="605.0" prefWidth="359.0"
-                          AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                <GridPane layoutX="20.0" layoutY="562.0" prefHeight="605.0" prefWidth="359.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="257.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="249.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="194.0" minHeight="9.0" prefHeight="13.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="257.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="249.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="194.0" minHeight="9.0" prefHeight="13.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                    <Button fx:id="button_Package" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0"
-                            style="-fx-background-color: #08B865;" styleClass="success" text="Package"
-                            textFill="WHITE" GridPane.rowIndex="6">
+                    <Button fx:id="button_Package" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" style="-fx-background-color: #08B865;" styleClass="success" text="Package" textFill="WHITE" GridPane.rowIndex="6">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                         <GridPane.margin>
-                            <Insets bottom="10.0" top="10.0"/>
+                            <Insets bottom="10.0" top="10.0" />
                         </GridPane.margin>
                     </Button>
-                    <TextArea fx:id="textArea_description" disable="true" prefHeight="134.0" prefWidth="359.0"
-                              promptText="Write you app description" wrapText="true" GridPane.rowIndex="5"/>
+                    <TextArea fx:id="textArea_description" disable="true" prefHeight="134.0" prefWidth="359.0" promptText="Write you app description" wrapText="true" GridPane.rowIndex="5" />
                     <GridPane prefHeight="51.0" prefWidth="359.0" GridPane.rowIndex="3">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0"
-                                               prefWidth="179.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0"
-                                               prefWidth="114.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0"
-                                               prefWidth="65.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="179.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="127.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="52.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
-                        <ComboBox fx:id="comboBox_PackageType" prefHeight="35.0" prefWidth="175.0"
-                                  promptText="Package Type"/>
-                        <ToggleSwitch fx:id="toggleSwitch_createShortcut" prefHeight="17.0" prefWidth="11.0"
-                                      style="-color-accent-emphasis: #08B865;" GridPane.columnIndex="2">
+                        <ComboBox fx:id="comboBox_PackageType" prefHeight="35.0" prefWidth="175.0" promptText="Package Type" />
+                        <ToggleSwitch fx:id="toggleSwitch_createShortcut" prefHeight="17.0" prefWidth="11.0" style="-color-accent-emphasis: #08B865;" GridPane.columnIndex="2">
                             <GridPane.margin>
-                                <Insets left="20.0"/>
+                                <Insets left="20.0" />
                             </GridPane.margin>
                         </ToggleSwitch>
-                        <Label prefHeight="35.0" prefWidth="108.0" text="Create Shortcut"
-                               GridPane.columnIndex="1">
+                        <Label prefHeight="35.0" prefWidth="174.0" text="Create Shortcut" GridPane.columnIndex="1">
                             <GridPane.margin>
-                                <Insets left="5.0" right="5.0"/>
+                                <Insets left="5.0" right="5.0" />
                             </GridPane.margin>
                         </Label>
                     </GridPane>
-                    <Separator prefWidth="200.0" GridPane.rowIndex="2"/>
+                    <Separator prefWidth="200.0" GridPane.rowIndex="2" />
                     <GridPane GridPane.rowIndex="4">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
-                        <ToggleSwitch fx:id="toggleSwitch_addDescription" prefHeight="29.0"
-                                      prefWidth="170.0" style="-color-accent-emphasis: #08B865;"
-                                      styleClass="toggle-switch" text="Add description"/>
+                        <ToggleSwitch fx:id="toggleSwitch_addDescription" prefHeight="29.0" prefWidth="170.0" style="-color-accent-emphasis: #08B865;" styleClass="toggle-switch" text="Add description" />
                     </GridPane>
                     <GridPane prefHeight="34.0" prefWidth="381.0" GridPane.rowIndex="1">
                         <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="84.0"
-                                               minWidth="10.0" prefWidth="28.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0"
-                                               prefWidth="154.0"/>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="84.0"
-                                               minWidth="10.0" prefWidth="28.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0"
-                                               prefWidth="169.0"/>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="28.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="154.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="28.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="169.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
-                        <CheckBox fx:id="checkBox_appVersion" mnemonicParsing="false"/>
-                        <TextField fx:id="textField_appVersion" disable="true" prefHeight="35.0"
-                                   promptText="App Version" GridPane.columnIndex="1">
+                        <CheckBox fx:id="checkBox_appVersion" mnemonicParsing="false" />
+                        <TextField fx:id="textField_appVersion" disable="true" prefHeight="35.0" promptText="App Version" GridPane.columnIndex="1">
                             <GridPane.margin>
-                                <Insets left="5.0" right="5.0"/>
+                                <Insets left="5.0" right="5.0" />
                             </GridPane.margin>
                         </TextField>
-                        <CheckBox fx:id="checkBox_Vendor" mnemonicParsing="false" GridPane.columnIndex="2"/>
-                        <TextField fx:id="textField_vendor" disable="true" prefHeight="35.0"
-                                   promptText="Vendor" GridPane.columnIndex="3">
+                        <CheckBox fx:id="checkBox_Vendor" mnemonicParsing="false" GridPane.columnIndex="2" />
+                        <TextField fx:id="textField_vendor" disable="true" prefHeight="35.0" promptText="Vendor" GridPane.columnIndex="3">
                             <GridPane.margin>
-                                <Insets left="5.0" right="5.0"/>
+                                <Insets left="5.0" right="5.0" />
                             </GridPane.margin>
                         </TextField>
                     </GridPane>
                     <GridPane prefHeight="301.0" prefWidth="359.0">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0"
-                                               prefWidth="324.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0"
-                                               prefWidth="35.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="324.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="35.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
-                        <TextField fx:id="textField_AppName" prefHeight="35.0" prefWidth="306.0"
-                                   promptText="App Name"/>
-                        <TextField fx:id="textField_Icon" prefHeight="35.0" promptText="Icon"
-                                   GridPane.rowIndex="1"/>
-                        <Button fx:id="button_FindIcon" mnemonicParsing="false" prefHeight="35.0"
-                                prefWidth="26.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="textField_AppName" prefHeight="35.0" prefWidth="306.0" promptText="App Name" />
+                        <TextField fx:id="textField_Icon" prefHeight="35.0" promptText="Icon" GridPane.rowIndex="1" />
+                        <Button fx:id="button_FindIcon" mnemonicParsing="false" prefHeight="35.0" prefWidth="26.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <graphic>
-                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19"/>
+                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19" />
                             </graphic>
                         </Button>
-                        <TextField fx:id="textField_PathToApp" prefHeight="35.0" promptText="Path to App"
-                                   GridPane.rowIndex="2"/>
-                        <Button fx:id="button_FindPathToApp" mnemonicParsing="false" prefHeight="35.0"
-                                prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="textField_PathToApp" prefHeight="35.0" promptText="Path to App" GridPane.rowIndex="2" />
+                        <Button fx:id="button_FindPathToApp" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <graphic>
-                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19"/>
+                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19" />
                             </graphic>
                         </Button>
-                        <TextField fx:id="textField_PathToJar" prefHeight="35.0"
-                                   promptText="Path to Jar Package" GridPane.rowIndex="3"/>
-                        <Button fx:id="button_FindPathToJar" mnemonicParsing="false" prefHeight="35.0"
-                                prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="textField_PathToJar" prefHeight="35.0" promptText="Path to Jar Package" GridPane.rowIndex="3" />
+                        <Button fx:id="button_FindPathToJar" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <graphic>
-                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19"/>
+                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19" />
                             </graphic>
                         </Button>
-                        <TextField fx:id="textField_MainClass" prefHeight="35.0" promptText="Main Class"
-                                   GridPane.rowIndex="4"/>
-                        <Button fx:id="button_FindMainClass" mnemonicParsing="false" prefHeight="35.0"
-                                prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="textField_MainClass" prefHeight="35.0" promptText="Main Class" GridPane.rowIndex="4" />
+                        <Button fx:id="button_FindMainClass" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <graphic>
-                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19"/>
+                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19" />
                             </graphic>
                         </Button>
-                        <TextField fx:id="textField_Destination" prefHeight="35.0" promptText="Destination"
-                                   GridPane.rowIndex="5"/>
-                        <Button fx:id="button_FindDestination" mnemonicParsing="false" prefHeight="35.0"
-                                prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <TextField fx:id="textField_Destination" prefHeight="35.0" promptText="Destination" GridPane.rowIndex="5" />
+                        <Button fx:id="button_FindDestination" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <graphic>
-                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19"/>
+                                <FontIcon disable="true" iconLiteral="bi-search" iconSize="19" />
                             </graphic>
                         </Button>
                     </GridPane>
                 </GridPane>
-                <StackedFontIcon layoutX="312.0" layoutY="14.0" prefHeight="30.0" prefWidth="30.0"
-                                 AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="14.0">
-                    <ToggleSwitch fx:id="toggleSwitch_theme" prefHeight="17.0" prefWidth="33.0"
-                                  style="-color-accent-emphasis: #08B865;" styleClass="toggle-switch"/>
+                <StackedFontIcon layoutX="312.0" layoutY="14.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="14.0">
+                    <ToggleSwitch fx:id="toggleSwitch_theme" prefHeight="17.0" prefWidth="33.0" style="-color-accent-emphasis: #08B865;" styleClass="toggle-switch" />
                 </StackedFontIcon>
                 <StackedFontIcon layoutX="349.0" layoutY="14.0" prefHeight="30.0" prefWidth="30.0">
-                    <FontIcon fx:id="fontIcon_theme" iconLiteral="bi-moon-fill" iconSize="19"/>
+                    <FontIcon fx:id="fontIcon_theme" iconLiteral="bi-moon-fill" iconSize="19" />
                 </StackedFontIcon>
             </AnchorPane>
         </center>
