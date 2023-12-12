@@ -32,9 +32,4 @@ public class PropertiesConfig {
 
         return theme;
     }
-
-    public static void main(String[] args) throws IOException {
-        PropertiesConfig lerPropertie = new PropertiesConfig();
-        System.out.println(lerPropertie.getProperties());
-    }
 }
