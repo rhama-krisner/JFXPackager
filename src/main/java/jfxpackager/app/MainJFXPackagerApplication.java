@@ -1,9 +1,11 @@
 package jfxpackager.app;
 
+import atlantafx.base.controls.ToggleSwitch;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import jfxpackager.app.util.PropertiesConfig;
 import jfxpackager.app.util.Theme;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
@@ -42,8 +44,15 @@ public class MainJFXPackagerApplication extends Application {
     }
 
     private void applyTheme(Stage stage) {
+        PropertiesConfig config = new PropertiesConfig();
+        ToggleSwitch toggleSwitch_theme = new ToggleSwitch();
+
         try {
-            theme.LightTheme();
+            //theme.LightTheme();
+            switch (config.getProperties()){
+                case "light" -> theme.LightTheme();
+                case "dark" -> theme.DarkTheme();
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

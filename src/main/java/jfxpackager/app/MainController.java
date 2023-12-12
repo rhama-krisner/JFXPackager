@@ -10,12 +10,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxpackager.app.util.FileChooserFilter;
 import jfxpackager.app.util.ProcessBuilderTool;
+import jfxpackager.app.util.PropertiesConfig;
 import jfxpackager.app.util.Theme;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
+import java.io.IOException;
 
 @Controller
 @FxmlView("MainController.fxml")
@@ -175,14 +177,17 @@ public class MainController {
 
     private void themeConfig() {
         Theme theme = new Theme();
+        PropertiesConfig config = new PropertiesConfig();
 
         toggleSwitch_theme.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
             try {
                 if (t1) {
                     theme.DarkTheme();
+                    config.setPropertyTheme("dark");
                     fontIcon_theme.setIconLiteral("bi-sun-fill");
                 } else {
                     theme.LightTheme();
+                    config.setPropertyTheme("light");
                     fontIcon_theme.setIconLiteral("bi-moon-fill");
 
                 }
@@ -192,8 +197,16 @@ public class MainController {
         });
     }
 
+    private void testOnSelected() throws IOException {
+        PropertiesConfig config = new PropertiesConfig();
+
+        toggleSwitch_theme.setSelected(config.getProperties().equals("dark"));
+    }
+
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
+        testOnSelected();
+
         themeConfig();
 
         button_FindIcon.setOnAction(view -> textFieldIcon());

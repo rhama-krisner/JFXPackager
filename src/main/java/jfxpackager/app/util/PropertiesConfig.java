@@ -3,9 +3,9 @@ package jfxpackager.app.util;
 import java.io.*;
 import java.util.Properties;
 
-public class LerPropertie {
-    private String nomeDoPropertie = "src/main/resources/theme.properties";
-    private Properties props = new Properties();
+public class PropertiesConfig {
+    private final String nomeDoPropertie = "src/main/resources/theme.properties";
+    private final Properties props = new Properties();
 
     public void setPropertyTheme(String theme) throws IOException {
         switch (theme) {
@@ -34,7 +34,7 @@ public class LerPropertie {
     }
 
     public static void main(String[] args) throws IOException {
-        LerPropertie lerPropertie = new LerPropertie();
+        PropertiesConfig lerPropertie = new PropertiesConfig();
         System.out.println(lerPropertie.getProperties());
     }
 }
