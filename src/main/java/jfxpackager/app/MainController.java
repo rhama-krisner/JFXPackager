@@ -12,6 +12,7 @@ import jfxpackager.app.util.FileChooserFilter;
 import jfxpackager.app.util.ProcessBuilderTool;
 import jfxpackager.app.util.PropertiesConfig;
 import jfxpackager.app.util.Theme;
+import jfxpackager.app.util.controller_utils.MainControllerUtils;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,6 @@ import java.io.IOException;
 @Controller
 @FxmlView("MainController.fxml")
 public class MainController {
-    //TextField
     @FXML
     private TextField textField_AppName;
     @FXML
@@ -39,8 +39,6 @@ public class MainController {
     private TextField textField_appVersion;
     @FXML
     private TextField textField_vendor;
-
-    //Buttons
     @FXML
     private Button button_FindIcon;
     @FXML
@@ -53,34 +51,25 @@ public class MainController {
     private Button button_FindDestination;
     @FXML
     private Button button_Package;
-    //Check Box
     @FXML
     private CheckBox checkBox_appVersion;
     @FXML
     private CheckBox checkBox_Vendor;
-    //Combo Box
     @FXML
     private ComboBox<String> comboBox_PackageType;
-    //Toggle Switch
     @FXML
     private ToggleSwitch toggleSwitch_createShortcut;
     @FXML
     private ToggleSwitch toggleSwitch_addDescription;
     @FXML
     private ToggleSwitch toggleSwitch_theme;
-    //Text Area
     @FXML
     private TextArea textArea_description;
-    //Icon
     @FXML
     private FontIcon fontIcon_theme;
 
     private String textFieldAppName() {
-        if (textField_AppName.getText().trim().isEmpty()) {
-            return null;
-        }
-
-        return textField_AppName.getText();
+        return textField_AppName.getText().isBlank() ? null : textField_AppName.getText();
     }
 
     private void textFieldIcon() {
@@ -90,29 +79,8 @@ public class MainController {
     }
 
     private void textFindPathToApp() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        File file = directoryChooser.showDialog(button_FindPathToApp.getScene().getWindow());
+        File file = new DirectoryChooser().showDialog(button_FindPathToApp.getScene().getWindow());
         textField_PathToApp.setText(file.getPath());
-    }
-
-    private void textFindPathToJar() {
-        FileChooser fileChooser = FileChooserFilter.jarFileChooser();
-        File initialDirectory = new File(textField_PathToApp.getText() + "/out/artifacts");
-        fileChooser.setInitialDirectory(initialDirectory);
-
-        File selectedFile = fileChooser.showOpenDialog(button_FindPathToApp.getScene().getWindow());
-
-        textField_PathToJar.setText(selectedFile.getPath());
-    }
-
-    private void textFindMainClass() {
-        FileChooser fileChooser = FileChooserFilter.javaClassFileChooser();
-        File initialDirectory = new File(textField_PathToApp.getText() + "/src/main/java");
-        fileChooser.setInitialDirectory(initialDirectory);
-
-        File selectedFile = fileChooser.showOpenDialog(button_FindMainClass.getScene().getWindow());
-
-        textField_MainClass.setText(selectedFile.getPath());
     }
 
     private void textFieldDestination() {
@@ -213,9 +181,15 @@ public class MainController {
 
         button_FindPathToApp.setOnAction(view -> textFindPathToApp());
 
-        button_FindPathToJar.setOnAction(view -> textFindPathToJar());
+        button_FindPathToJar.setOnAction(view -> MainControllerUtils
+                .findTextPath(
+                        textField_PathToApp.getText() + "/", button_FindPathToApp,
+                        FileChooserFilter.jarFileChooser()));
 
-        button_FindMainClass.setOnAction(view -> textFindMainClass());
+        button_FindMainClass.setOnAction(view -> MainControllerUtils
+                .findTextPath(
+                        textField_MainClass.getText() + "/src/main/java", button_FindMainClass,
+                        FileChooserFilter.javaClassFileChooser()));
 
         textFieldAppVersion();
 
