@@ -83,31 +83,19 @@ public class MainController {
         textField_PathToApp.setText(file.getPath());
     }
 
+    private String appVersion() {
+        return MainControllerUtils.checkBoxConfig("--app-version ", checkBox_appVersion, textField_appVersion);
+    }
+
+    private String vendor() {
+        return MainControllerUtils.checkBoxConfig("--vendor ", checkBox_Vendor, textField_vendor);
+    }
+
     private void textFieldDestination() {
         Stage stage = new Stage();
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(stage);
         textField_Destination.setText(selectedDirectory.toString());
-    }
-
-    private String textFieldAppVersion() {
-        checkBox_appVersion.selectedProperty().addListener((observableValue, aBoolean, t1) -> textField_appVersion.setDisable(!t1));
-
-        if (checkBox_appVersion.isSelected()) {
-            return "--app-version " + textField_appVersion.getText();
-        } else {
-            return "";
-        }
-    }
-
-    private String textFieldVendor() {
-        checkBox_Vendor.selectedProperty().addListener((observableValue, aBoolean, t1) -> textField_vendor.setDisable(!t1));
-        if (checkBox_Vendor.isSelected()) {
-            return "--vendor \"" + textField_vendor.getText() + "\"";
-        } else {
-            return "";
-        }
-
     }
 
     private String toggleSwitchCreateShortcut() {
@@ -122,7 +110,6 @@ public class MainController {
         } else {
             return "";
         }
-        ;
         return os;
     }
 
@@ -192,9 +179,9 @@ public class MainController {
                         button_FindMainClass,
                         FileChooserFilter.javaClassFileChooser(), textField_MainClass));
 
-        textFieldAppVersion();
+        appVersion();
 
-        textFieldVendor();
+        vendor();
 
         toggleSwitchCreateShortcut();
 
@@ -227,9 +214,9 @@ public class MainController {
         //Diretorio de destino
         sb.append("--dest ").append(textField_Destination.getText()).append(" ");
         //Versão do aplicativo
-        sb.append(textFieldAppVersion()).append(" ");
+        sb.append(appVersion()).append(" ");
         //Desenvolvedor
-        sb.append(textFieldVendor()).append(" ");
+        sb.append(vendor()).append(" ");
         //Tpo de empacotamento
         sb.append("--type ").append(comboBox_PackageType.getValue()).append(" ");
         //Descrição
