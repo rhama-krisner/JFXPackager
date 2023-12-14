@@ -184,12 +184,13 @@ public class MainController {
         button_FindPathToJar.setOnAction(view -> MainControllerUtils
                 .findTextPath(
                         textField_PathToApp.getText() + "/", button_FindPathToApp,
-                        FileChooserFilter.jarFileChooser()));
+                        FileChooserFilter.jarFileChooser(), textField_PathToJar));
 
         button_FindMainClass.setOnAction(view -> MainControllerUtils
                 .findTextPath(
-                        textField_MainClass.getText() + "/src/main/java", button_FindMainClass,
-                        FileChooserFilter.javaClassFileChooser()));
+                        textField_PathToApp.getText() + "/src/main/java",
+                        button_FindMainClass,
+                        FileChooserFilter.javaClassFileChooser(), textField_MainClass));
 
         textFieldAppVersion();
 
