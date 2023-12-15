@@ -8,10 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import jfxpackager.app.util.FileChooserFilter;
-import jfxpackager.app.util.ProcessBuilderTool;
-import jfxpackager.app.util.PropertiesConfig;
-import jfxpackager.app.util.Theme;
+import jfxpackager.app.util.*;
 import jfxpackager.app.util.controller_utils.MainControllerUtils;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -124,8 +121,7 @@ public class MainController {
 
 
     private void comboBoxPackageType() {
-        comboBox_PackageType.getItems().addAll(
-                "app-image", "exe", "msi", "rpm", "deb", "pkg", "dmg");
+        OS_Check.comboBoxPackageTypeByOperationalSystem(comboBox_PackageType);
 
         comboBox_PackageType.getSelectionModel().getSelectedIndex();
     }
@@ -227,16 +223,12 @@ public class MainController {
     }
 
     private void run() {
-        button_Package.setOnAction(view -> {
-            Task task = new Task() {
-                @Override
-                protected Object call() {
-                    ProcessBuilderTool.RunProcess(print());
-                    return null;
-                }
-            };
-
-            new Thread(task).start();
-        });
+        button_Package.setOnAction(v -> new Thread(() -> new Task<Void>() {
+            @Override
+            protected Void call() {
+                ProcessBuilderTool.RunProcess(print());
+                return null;
+            }
+        }).start());
     }
 }

@@ -1,10 +1,12 @@
 package jfxpackager.app.util;
 
+import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 
 public class OS_Check {
     static String os = System.getProperty("os.name").toLowerCase();
-    public static void CheckOperationalSystemForFileChoose(){
+
+    public static void CheckOperationalSystemForFileChoose() {
         FileChooser fileChooser = new FileChooser();
 
         if (os.contains("win")) {
@@ -24,6 +26,17 @@ public class OS_Check {
         }
 
     }
+
+    public static void comboBoxPackageTypeByOperationalSystem(ComboBox<String> comboBox) {
+        if (os.contains("win")) {
+            comboBox.getItems().addAll("app-image", "exe", "msi");
+        } else if (os.contains("nix") || os.contains("nux")) {
+            comboBox.getItems().addAll("app-image", "deb", "rpm");
+        } else if (os.contains("mac")) {
+            comboBox.getItems().addAll("app-image", "pkg", "dmg");
+        }
+    }
+
 
 }
 
